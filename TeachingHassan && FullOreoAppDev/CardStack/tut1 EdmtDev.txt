@@ -1,0 +1,42 @@
+com.google.android.gms:play-services-vision:9.8.0
+
+<meta-data
+	android:name="com.google.android.gms.vision.DEPENDENCIES"
+	android:value="orc"/>
+
+
+scaleType center inside
+
+
+
+ImageView
+TextView
+Button
+
+findviewbyid
+<imageView,buttonProcess,textResult>
+
+Bitmap bitmap = BitmapFactory.decodeResource(
+	getApplicationContext().getResources,
+	R.drawable.text_recognition
+);
+imageView.setImageBitmap(bitmap);
+
+btnProcess.setOnClick....
+
+TextRocognizer textRecognizer = new TextRecognizer().Builder(getApplicationContext()).build();
+if(!textRecognizer.isOperational()){
+	Log.e("ERROR","Detector dependencies are not yet available");
+}
+else{
+	Frame frame = new Frame.Builder().setBitmap(bitmap).build();
+	SparseArray<TextBlock>  items = textRecognizer.detect(frame);
+	StringBuilder .... new String....
+	for(int i=0;i<items.size();++i){
+		TextBlock item = items.valueAt(i);
+		stringBuilder.append(item.getValue());
+		stringBuilder.append("\n");
+	}
+
+	textResult.setText(stringBuilder.toString());
+}
